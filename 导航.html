@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小澪搜索导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .search-input {
+            width: 500px;
+            height: 40px;
+            padding: 0 15px;
+            border: 2px solid #4285f4;
+            border-radius: 20px 0 0 20px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-btn {
+            height: 40px;
+            padding: 0 20px;
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .nav-categories {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .category {
+            margin-bottom: 25px;
+        }
+        .category-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-left: 8px;
+            border-left: 3px solid #4285f4;
+        }
+        .links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 80px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .link-icon {
+            font-size: 24px;
+            margin-right: 8px;
+            color: #4285f4;
+        }
+        .link-text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="搜索黄片、新闻、国家大事啥的..." id="searchInput">
+        <button class="search-btn" onclick="performSearch()">获取</button>
+    </div>
+
+    <div class="nav-categories">
+        <div class="category">
+            <h2 class="category-title">🔍 选择搜索引擎</h2>
+            <div class="links-grid">
+                <a href="https://www.baidu.com" target="_blank" class="link-item">
+                    <span class="link-icon">🔍</span>
+                    <span class="link-text">百度</span>
+                </a>
+                <a href="https://www.google.com" target="_blank" class="link-item">
+                    <span class="link-icon">🔍</span>
+                    <span class="link-text">谷歌</span>
+                </a>
+                <a href="https://cn.bing.com" target="_blank" class="link-item">
+                    <span class="link-icon">🔍</span>
+                    <span class="link-text">必应</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2 class="category-title">🌐 综合</h2>
+            <div class="links-grid">
+                <a href="https://www.taobao.com" target="_blank" class="link-item">
+                    <span class="link-icon">🛒</span>
+                    <span class="link-text">淘宝</span>
+                </a>
+                <a href="https://www.jd.com" target="_blank" class="link-item">
+                    <span class="link-icon">🛒</span>
+                    <span class="link-text">京东</span>
+                </a>
+                <a href="https://www.qq.com" target="_blank" class="link-item">
+                    <span class="link-icon">📰</span>
+                    <span class="link-text">腾讯新闻</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function performSearch() {
+            const input = document.getElementById('searchInput');
+            const keyword = input.value.trim();
+            if (keyword) {
+                window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(keyword)}`, '_blank');
+            } else {
+                alert('请输入搜索关键词');
+            }
+        }
+
+        // 支持回车搜索
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>
